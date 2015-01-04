@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'Michaël Krens'
 __copyright__ = "Copyright 2015, SignRequest B.V."
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 
 from .client import SignRequestClient, SignRequestClientException
 
