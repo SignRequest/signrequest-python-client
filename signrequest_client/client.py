@@ -13,7 +13,7 @@ class SignRequestClientException(Exception):
 
 class SignRequestClient(object):
 
-    def __init__(self, subdomain, token=None, api_base_endpoint='https://signrequest/api/v1/',
+    def __init__(self, subdomain, token=None, api_base_endpoint='https://signrequest.com/api/v1/',
                  username=None, password=None):
         self.subdomain = subdomain
         self.token = token
