@@ -12,7 +12,7 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
-    name="SignRequest REST API python client",
+    name="signrequest-python-client",
     version=version,
     author="Michaël Krens",
     author_email="michael@signrequest.com",
