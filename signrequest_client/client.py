@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
+from signrequest_client import __version__ as version
+
 __author__ = "Michaël Krens"
 __copyright__ = "Copyright 2015, SignRequest B.V."
 import json
 import requests
-
-VERSION = '0.0.1'
 
 
 class SignRequestClientException(Exception):
@@ -25,7 +25,7 @@ class SignRequestClient(object):
                 "Please authenticate by providing a valid token or by username and password")
 
     def get_headers(self, is_json=False):
-        headers = {'Authorization': 'Token %s' % self.token, 'X-Client-Version': VERSION}
+        headers = {'Authorization': 'Token %s' % self.token, 'X-Client-Version': version}
         if is_json:
             headers['Content-Type'] = 'application/json'
         return headers

@@ -1,10 +1,10 @@
 import unittest
-from client import SignRequestClient
+from signrequest_client import SignRequestClient
 
 
 class TestClient(unittest.TestCase):
     """
-    This is an integration test only usable for SignRequest developers
+    This is a quick integration test only usable for SignRequest developers
     """
     def setUp(self):
         self.client = SignRequestClient(
