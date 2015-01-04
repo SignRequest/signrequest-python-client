@@ -11,6 +11,9 @@ from signrequest_client import __version__ as version
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
+# helpfull: https://hynek.me/articles/sharing-your-labor-of-love-pypi-quick-and-dirty/
+# distribute using: python setup.py sdist bdist_wheel upload
+
 setup(
     name="signrequest-python-client",
     version=version,
