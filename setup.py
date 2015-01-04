@@ -20,7 +20,7 @@ setup(
     keywords="signrequest sign request",
     url="https://github.com/SignRequest/signrequest-python-client",
     packages=['signrequest_client'],
-    long_description=read('README.md'),
+    long_description=read('README'),
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Topic :: Utilities",
