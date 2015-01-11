@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import hashlib
+import hmac
 from signrequest_client import __version__ as version
 
 __author__ = "Michaël Krens"
@@ -125,3 +127,7 @@ class SignRequestClient(object):
             return json.loads(resp.content)
         else:
             raise SignRequestClientException("Could not get event(s), response: %s " % resp.content)
+
+    def confirm_callback_authenticity(self, timestamp, event_type, event_hash):
+        return event_hash == hmac.new(self.token, (timestamp + event_type),
+                                      hashlib.sha256).hexdigest()
