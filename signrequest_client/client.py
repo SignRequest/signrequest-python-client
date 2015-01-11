@@ -128,6 +128,6 @@ class SignRequestClient(object):
         else:
             raise SignRequestClientException("Could not get event(s), response: %s " % resp.content)
 
-    def confirm_callback_authenticity(self, timestamp, event_type, event_hash):
-        return event_hash == hmac.new(self.token, (timestamp + event_type),
+    def confirm_callback_authenticity(self, event_time, event_type, event_hash):
+        return event_hash == hmac.new(self.token, (event_time + event_type),
                                       hashlib.sha256).hexdigest()
