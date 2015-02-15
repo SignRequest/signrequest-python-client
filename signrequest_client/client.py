@@ -6,7 +6,10 @@ from signrequest_client import __version__ as version
 __author__ = "Michaël Krens"
 __copyright__ = "Copyright 2015, SignRequest B.V."
 import json
-import requests
+try:
+    import requests
+except ImportError:
+    pass
 
 
 class SignRequestClientException(Exception):
