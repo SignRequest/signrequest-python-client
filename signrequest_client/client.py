@@ -92,6 +92,15 @@ class SignRequestClient(object):
         else:
             raise SignRequestClientException("Could not create document, response: %s " % resp.content)
 
+    def resend_signrequest_email(self, signrequest_uuid):
+        resp = requests.post(
+            self.api_base_endpoint + 'signrequests/' + signrequest_uuid + '/resend_signrequest_email/',
+            headers=self.get_headers())
+        if resp.ok:
+            return json.loads(resp.content)
+        else:
+            raise SignRequestClientException("Could not resend email, response: %s " % resp.content)
+
     def get_document(self, uuid):
         resp = requests.get(
             self.api_base_endpoint + 'documents/' + uuid + '/',
