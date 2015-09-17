@@ -6,7 +6,10 @@ from signrequest_client import __version__ as version
 __author__ = "Michaël Krens"
 __copyright__ = "Copyright 2015, SignRequest B.V."
 import json
-import requests
+try:
+    import requests
+except ImportError:
+    pass
 
 
 class SignRequestClientException(Exception):
@@ -62,7 +65,7 @@ class SignRequestClient(object):
             raise SignRequestClientException("Could not create document, response: %s " % resp.content)
 
     def create_signrequest(self, uuid, from_email, signers=None, who='o', message='', subject='',
-                           required_attachments=None, disable_attachments=False):
+                           required_attachments=None, disable_attachments=False, disable_text=False):
         signers = signers or []
         required_attachments = required_attachments or []
         if not isinstance(signers, list):
@@ -77,6 +80,7 @@ class SignRequestClient(object):
             'message': message,
             'subject': subject,
             'disable_attachments': disable_attachments,
+            'disable_text': disable_text,
             'required_attachments': required_attachments,
             'signers': signers,
         }
@@ -88,6 +92,15 @@ class SignRequestClient(object):
             return json.loads(resp.content)
         else:
             raise SignRequestClientException("Could not create document, response: %s " % resp.content)
+
+    def resend_signrequest_email(self, signrequest_uuid):
+        resp = requests.post(
+            self.api_base_endpoint + 'signrequests/' + signrequest_uuid + '/resend_signrequest_email/',
+            headers=self.get_headers())
+        if resp.ok:
+            return json.loads(resp.content)
+        else:
+            raise SignRequestClientException("Could not resend email, response: %s " % resp.content)
 
     def get_document(self, uuid):
         resp = requests.get(
