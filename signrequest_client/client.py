@@ -65,7 +65,7 @@ class SignRequestClient(object):
             raise SignRequestClientException("Could not create document, response: %s " % resp.content)
 
     def create_signrequest(self, uuid, from_email, signers=None, who='o', message='', subject='',
-                           required_attachments=None, disable_attachments=False):
+                           required_attachments=None, disable_attachments=False, disable_text=False):
         signers = signers or []
         required_attachments = required_attachments or []
         if not isinstance(signers, list):
@@ -80,6 +80,7 @@ class SignRequestClient(object):
             'message': message,
             'subject': subject,
             'disable_attachments': disable_attachments,
+            'disable_text': disable_text,
             'required_attachments': required_attachments,
             'signers': signers,
         }
