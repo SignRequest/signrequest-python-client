@@ -1,7 +1,6 @@
 # coding: utf-8
 
 # flake8: noqa
-
 """
     SignRequest API
 
@@ -15,23 +14,7 @@
 
 from __future__ import absolute_import
 
-# import apis into sdk package
-from signrequest_client.api.api_tokens_api import ApiTokensApi
-from signrequest_client.api.document_attachments_api import DocumentAttachmentsApi
-from signrequest_client.api.documents_api import DocumentsApi
-from signrequest_client.api.documents_search_api import DocumentsSearchApi
-from signrequest_client.api.events_api import EventsApi
-from signrequest_client.api.signrequest_quick_create_api import SignrequestQuickCreateApi
-from signrequest_client.api.signrequests_api import SignrequestsApi
-from signrequest_client.api.team_members_api import TeamMembersApi
-from signrequest_client.api.teams_api import TeamsApi
-from signrequest_client.api.templates_api import TemplatesApi
-from signrequest_client.api.webhooks_api import WebhooksApi
-
-# import ApiClient
-from signrequest_client.api_client import ApiClient
-from signrequest_client.configuration import Configuration
-# import models into sdk package
+# import models into model package
 from signrequest_client.models.auth_token import AuthToken
 from signrequest_client.models.document import Document
 from signrequest_client.models.document_attachment import DocumentAttachment
