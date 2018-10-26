@@ -14,7 +14,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 import os
 
-NAME = "signrequest-client"
+NAME = "signrequest-python-client"
 VERSION = "1.0.0"
 
 
