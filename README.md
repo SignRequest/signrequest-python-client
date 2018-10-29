@@ -1,5 +1,7 @@
 # SignRequest API Client
-API for SignRequest.com 
+API for [SignRequest.com](https://signrequest.com/)
+
+[![PyPI version](https://badge.fury.io/py/signrequest-python-client.svg)](https://badge.fury.io/py/signrequest-python-client)
 
 ## Requirements.
 
@@ -31,6 +33,10 @@ Then import the package:
 ```python
 import signrequest_client
 ```
+
+## API Documentation
+Full API documentation, including code samples, can be found here:
+https://signrequest.com/api/v1/docs/
 
 ## Getting Started
 
