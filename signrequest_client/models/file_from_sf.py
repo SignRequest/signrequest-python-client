@@ -32,23 +32,28 @@ class FileFromSf(object):
     """
     swagger_types = {
         'object_type': 'str',
-        'object_id': 'str'
+        'object_id': 'str',
+        'uid': 'str'
     }
 
     attribute_map = {
         'object_type': 'object_type',
-        'object_id': 'object_id'
+        'object_id': 'object_id',
+        'uid': 'uid'
     }
 
-    def __init__(self, object_type=None, object_id=None):  # noqa: E501
+    def __init__(self, object_type=None, object_id=None, uid=None):  # noqa: E501
         """FileFromSf - a model defined in Swagger"""  # noqa: E501
 
         self._object_type = None
         self._object_id = None
+        self._uid = None
         self.discriminator = None
 
         self.object_type = object_type
         self.object_id = object_id
+        if uid is not None:
+            self.uid = uid
 
     @property
     def object_type(self):
@@ -100,6 +105,29 @@ class FileFromSf(object):
 
         self._object_id = object_id
 
+    @property
+    def uid(self):
+        """Gets the uid of this FileFromSf.  # noqa: E501
+
+
+        :return: The uid of this FileFromSf.  # noqa: E501
+        :rtype: str
+        """
+        return self._uid
+
+    @uid.setter
+    def uid(self, uid):
+        """Sets the uid of this FileFromSf.
+
+
+        :param uid: The uid of this FileFromSf.  # noqa: E501
+        :type: str
+        """
+        if uid is not None and len(uid) < 1:
+            raise ValueError("Invalid value for `uid`, length must be greater than or equal to `1`")  # noqa: E501
+
+        self._uid = uid
+
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -121,6 +149,9 @@ class FileFromSf(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(FileFromSf, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 

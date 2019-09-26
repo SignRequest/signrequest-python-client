@@ -122,6 +122,9 @@ class RequiredAttachment(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(RequiredAttachment, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 

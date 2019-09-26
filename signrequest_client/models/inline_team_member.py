@@ -223,6 +223,9 @@ class InlineTeamMember(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(InlineTeamMember, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 

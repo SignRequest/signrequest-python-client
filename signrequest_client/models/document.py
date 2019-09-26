@@ -17,6 +17,9 @@ import re  # noqa: F401
 import six
 
 from signrequest_client.models.document_attachment import DocumentAttachment  # noqa: F401,E501
+from signrequest_client.models.document_signing_log import DocumentSigningLog  # noqa: F401,E501
+from signrequest_client.models.document_signrequest import DocumentSignrequest  # noqa: F401,E501
+from signrequest_client.models.document_team import DocumentTeam  # noqa: F401,E501
 from signrequest_client.models.file_from_sf import FileFromSf  # noqa: F401,E501
 from signrequest_client.models.inline_integration_data import InlineIntegrationData  # noqa: F401,E501
 from signrequest_client.models.inline_prefill_tags import InlinePrefillTags  # noqa: F401,E501
@@ -38,6 +41,7 @@ class Document(object):
     """
     swagger_types = {
         'url': 'str',
+        'team': 'DocumentTeam',
         'uuid': 'str',
         'user': 'User',
         'file_as_pdf': 'str',
@@ -54,16 +58,22 @@ class Document(object):
         'integrations': 'list[InlineIntegrationData]',
         'file_from_sf': 'FileFromSf',
         'auto_delete_days': 'int',
+        'auto_expire_days': 'int',
         'pdf': 'str',
         'status': 'str',
+        'signrequest': 'DocumentSignrequest',
         'api_used': 'bool',
+        'signing_log': 'DocumentSigningLog',
         'security_hash': 'str',
         'attachments': 'list[DocumentAttachment]',
-        'auto_delete_after': 'datetime'
+        'auto_delete_after': 'datetime',
+        'sandbox': 'bool',
+        'auto_expire_after': 'datetime'
     }
 
     attribute_map = {
         'url': 'url',
+        'team': 'team',
         'uuid': 'uuid',
         'user': 'user',
         'file_as_pdf': 'file_as_pdf',
@@ -80,18 +90,24 @@ class Document(object):
         'integrations': 'integrations',
         'file_from_sf': 'file_from_sf',
         'auto_delete_days': 'auto_delete_days',
+        'auto_expire_days': 'auto_expire_days',
         'pdf': 'pdf',
         'status': 'status',
+        'signrequest': 'signrequest',
         'api_used': 'api_used',
+        'signing_log': 'signing_log',
         'security_hash': 'security_hash',
         'attachments': 'attachments',
-        'auto_delete_after': 'auto_delete_after'
+        'auto_delete_after': 'auto_delete_after',
+        'sandbox': 'sandbox',
+        'auto_expire_after': 'auto_expire_after'
     }
 
-    def __init__(self, url=None, uuid=None, user=None, file_as_pdf=None, name=None, external_id=None, frontend_id=None, file=None, file_from_url=None, events_callback_url=None, file_from_content=None, file_from_content_name=None, template=None, prefill_tags=None, integrations=None, file_from_sf=None, auto_delete_days=None, pdf=None, status=None, api_used=None, security_hash=None, attachments=None, auto_delete_after=None):  # noqa: E501
+    def __init__(self, url=None, team=None, uuid=None, user=None, file_as_pdf=None, name=None, external_id=None, frontend_id=None, file=None, file_from_url=None, events_callback_url=None, file_from_content=None, file_from_content_name=None, template=None, prefill_tags=None, integrations=None, file_from_sf=None, auto_delete_days=None, auto_expire_days=None, pdf=None, status=None, signrequest=None, api_used=None, signing_log=None, security_hash=None, attachments=None, auto_delete_after=None, sandbox=None, auto_expire_after=None):  # noqa: E501
         """Document - a model defined in Swagger"""  # noqa: E501
 
         self._url = None
+        self._team = None
         self._uuid = None
         self._user = None
         self._file_as_pdf = None
@@ -108,16 +124,23 @@ class Document(object):
         self._integrations = None
         self._file_from_sf = None
         self._auto_delete_days = None
+        self._auto_expire_days = None
         self._pdf = None
         self._status = None
+        self._signrequest = None
         self._api_used = None
+        self._signing_log = None
         self._security_hash = None
         self._attachments = None
         self._auto_delete_after = None
+        self._sandbox = None
+        self._auto_expire_after = None
         self.discriminator = None
 
         if url is not None:
             self.url = url
+        if team is not None:
+            self.team = team
         if uuid is not None:
             self.uuid = uuid
         if user is not None:
@@ -150,18 +173,28 @@ class Document(object):
             self.file_from_sf = file_from_sf
         if auto_delete_days is not None:
             self.auto_delete_days = auto_delete_days
+        if auto_expire_days is not None:
+            self.auto_expire_days = auto_expire_days
         if pdf is not None:
             self.pdf = pdf
         if status is not None:
             self.status = status
+        if signrequest is not None:
+            self.signrequest = signrequest
         if api_used is not None:
             self.api_used = api_used
+        if signing_log is not None:
+            self.signing_log = signing_log
         if security_hash is not None:
             self.security_hash = security_hash
         if attachments is not None:
             self.attachments = attachments
         if auto_delete_after is not None:
             self.auto_delete_after = auto_delete_after
+        if sandbox is not None:
+            self.sandbox = sandbox
+        if auto_expire_after is not None:
+            self.auto_expire_after = auto_expire_after
 
     @property
     def url(self):
@@ -183,6 +216,27 @@ class Document(object):
         """
 
         self._url = url
+
+    @property
+    def team(self):
+        """Gets the team of this Document.  # noqa: E501
+
+
+        :return: The team of this Document.  # noqa: E501
+        :rtype: DocumentTeam
+        """
+        return self._team
+
+    @team.setter
+    def team(self, team):
+        """Sets the team of this Document.
+
+
+        :param team: The team of this Document.  # noqa: E501
+        :type: DocumentTeam
+        """
+
+        self._team = team
 
     @property
     def uuid(self):
@@ -561,6 +615,33 @@ class Document(object):
         self._auto_delete_days = auto_delete_days
 
     @property
+    def auto_expire_days(self):
+        """Gets the auto_expire_days of this Document.  # noqa: E501
+
+        Number of days after which a non finished document will be automatically expired  # noqa: E501
+
+        :return: The auto_expire_days of this Document.  # noqa: E501
+        :rtype: int
+        """
+        return self._auto_expire_days
+
+    @auto_expire_days.setter
+    def auto_expire_days(self, auto_expire_days):
+        """Sets the auto_expire_days of this Document.
+
+        Number of days after which a non finished document will be automatically expired  # noqa: E501
+
+        :param auto_expire_days: The auto_expire_days of this Document.  # noqa: E501
+        :type: int
+        """
+        if auto_expire_days is not None and auto_expire_days > 730:  # noqa: E501
+            raise ValueError("Invalid value for `auto_expire_days`, must be a value less than or equal to `730`")  # noqa: E501
+        if auto_expire_days is not None and auto_expire_days < 1:  # noqa: E501
+            raise ValueError("Invalid value for `auto_expire_days`, must be a value greater than or equal to `1`")  # noqa: E501
+
+        self._auto_expire_days = auto_expire_days
+
+    @property
     def pdf(self):
         """Gets the pdf of this Document.  # noqa: E501
 
@@ -613,6 +694,27 @@ class Document(object):
         self._status = status
 
     @property
+    def signrequest(self):
+        """Gets the signrequest of this Document.  # noqa: E501
+
+
+        :return: The signrequest of this Document.  # noqa: E501
+        :rtype: DocumentSignrequest
+        """
+        return self._signrequest
+
+    @signrequest.setter
+    def signrequest(self, signrequest):
+        """Sets the signrequest of this Document.
+
+
+        :param signrequest: The signrequest of this Document.  # noqa: E501
+        :type: DocumentSignrequest
+        """
+
+        self._signrequest = signrequest
+
+    @property
     def api_used(self):
         """Gets the api_used of this Document.  # noqa: E501
 
@@ -634,6 +736,27 @@ class Document(object):
         """
 
         self._api_used = api_used
+
+    @property
+    def signing_log(self):
+        """Gets the signing_log of this Document.  # noqa: E501
+
+
+        :return: The signing_log of this Document.  # noqa: E501
+        :rtype: DocumentSigningLog
+        """
+        return self._signing_log
+
+    @signing_log.setter
+    def signing_log(self, signing_log):
+        """Sets the signing_log of this Document.
+
+
+        :param signing_log: The signing_log of this Document.  # noqa: E501
+        :type: DocumentSigningLog
+        """
+
+        self._signing_log = signing_log
 
     @property
     def security_hash(self):
@@ -704,6 +827,52 @@ class Document(object):
 
         self._auto_delete_after = auto_delete_after
 
+    @property
+    def sandbox(self):
+        """Gets the sandbox of this Document.  # noqa: E501
+
+        Indicates whether document was created as part of a sandbox team  # noqa: E501
+
+        :return: The sandbox of this Document.  # noqa: E501
+        :rtype: bool
+        """
+        return self._sandbox
+
+    @sandbox.setter
+    def sandbox(self, sandbox):
+        """Sets the sandbox of this Document.
+
+        Indicates whether document was created as part of a sandbox team  # noqa: E501
+
+        :param sandbox: The sandbox of this Document.  # noqa: E501
+        :type: bool
+        """
+
+        self._sandbox = sandbox
+
+    @property
+    def auto_expire_after(self):
+        """Gets the auto_expire_after of this Document.  # noqa: E501
+
+        Date and time calculated using `auto_expire_days` after which a non finished document will be automatically expired  # noqa: E501
+
+        :return: The auto_expire_after of this Document.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._auto_expire_after
+
+    @auto_expire_after.setter
+    def auto_expire_after(self, auto_expire_after):
+        """Sets the auto_expire_after of this Document.
+
+        Date and time calculated using `auto_expire_days` after which a non finished document will be automatically expired  # noqa: E501
+
+        :param auto_expire_after: The auto_expire_after of this Document.  # noqa: E501
+        :type: datetime
+        """
+
+        self._auto_expire_after = auto_expire_after
+
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -725,6 +894,9 @@ class Document(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(Document, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 

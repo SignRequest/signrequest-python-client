@@ -42,6 +42,7 @@ class SignRequestQuickCreate(object):
         'is_being_prepared': 'bool',
         'prepare_url': 'str',
         'redirect_url': 'str',
+        'redirect_url_declined': 'str',
         'required_attachments': 'list[RequiredAttachment]',
         'disable_attachments': 'bool',
         'disable_text_signatures': 'bool',
@@ -49,6 +50,8 @@ class SignRequestQuickCreate(object):
         'disable_date': 'bool',
         'disable_emails': 'bool',
         'disable_upload_signatures': 'bool',
+        'disable_blockchain_proof': 'bool',
+        'text_message_verification_locked': 'bool',
         'subject': 'str',
         'message': 'str',
         'who': 'str',
@@ -71,7 +74,8 @@ class SignRequestQuickCreate(object):
         'prefill_tags': 'list[InlinePrefillTags]',
         'integrations': 'list[InlineIntegrationData]',
         'file_from_sf': 'FileFromSf',
-        'auto_delete_days': 'int'
+        'auto_delete_days': 'int',
+        'auto_expire_days': 'int'
     }
 
     attribute_map = {
@@ -80,6 +84,7 @@ class SignRequestQuickCreate(object):
         'is_being_prepared': 'is_being_prepared',
         'prepare_url': 'prepare_url',
         'redirect_url': 'redirect_url',
+        'redirect_url_declined': 'redirect_url_declined',
         'required_attachments': 'required_attachments',
         'disable_attachments': 'disable_attachments',
         'disable_text_signatures': 'disable_text_signatures',
@@ -87,6 +92,8 @@ class SignRequestQuickCreate(object):
         'disable_date': 'disable_date',
         'disable_emails': 'disable_emails',
         'disable_upload_signatures': 'disable_upload_signatures',
+        'disable_blockchain_proof': 'disable_blockchain_proof',
+        'text_message_verification_locked': 'text_message_verification_locked',
         'subject': 'subject',
         'message': 'message',
         'who': 'who',
@@ -109,10 +116,11 @@ class SignRequestQuickCreate(object):
         'prefill_tags': 'prefill_tags',
         'integrations': 'integrations',
         'file_from_sf': 'file_from_sf',
-        'auto_delete_days': 'auto_delete_days'
+        'auto_delete_days': 'auto_delete_days',
+        'auto_expire_days': 'auto_expire_days'
     }
 
-    def __init__(self, from_email=None, from_email_name=None, is_being_prepared=None, prepare_url=None, redirect_url=None, required_attachments=None, disable_attachments=None, disable_text_signatures=None, disable_text=None, disable_date=None, disable_emails=None, disable_upload_signatures=None, subject=None, message=None, who='o', send_reminders=None, signers=None, uuid=None, url=None, document=None, integration=None, integration_data=None, name=None, external_id=None, frontend_id=None, file=None, file_from_url=None, events_callback_url=None, file_from_content=None, file_from_content_name=None, template=None, prefill_tags=None, integrations=None, file_from_sf=None, auto_delete_days=None):  # noqa: E501
+    def __init__(self, from_email=None, from_email_name=None, is_being_prepared=None, prepare_url=None, redirect_url=None, redirect_url_declined=None, required_attachments=None, disable_attachments=None, disable_text_signatures=None, disable_text=None, disable_date=None, disable_emails=None, disable_upload_signatures=None, disable_blockchain_proof=None, text_message_verification_locked=None, subject=None, message=None, who='o', send_reminders=None, signers=None, uuid=None, url=None, document=None, integration=None, integration_data=None, name=None, external_id=None, frontend_id=None, file=None, file_from_url=None, events_callback_url=None, file_from_content=None, file_from_content_name=None, template=None, prefill_tags=None, integrations=None, file_from_sf=None, auto_delete_days=None, auto_expire_days=None):  # noqa: E501
         """SignRequestQuickCreate - a model defined in Swagger"""  # noqa: E501
 
         self._from_email = None
@@ -120,6 +128,7 @@ class SignRequestQuickCreate(object):
         self._is_being_prepared = None
         self._prepare_url = None
         self._redirect_url = None
+        self._redirect_url_declined = None
         self._required_attachments = None
         self._disable_attachments = None
         self._disable_text_signatures = None
@@ -127,6 +136,8 @@ class SignRequestQuickCreate(object):
         self._disable_date = None
         self._disable_emails = None
         self._disable_upload_signatures = None
+        self._disable_blockchain_proof = None
+        self._text_message_verification_locked = None
         self._subject = None
         self._message = None
         self._who = None
@@ -150,6 +161,7 @@ class SignRequestQuickCreate(object):
         self._integrations = None
         self._file_from_sf = None
         self._auto_delete_days = None
+        self._auto_expire_days = None
         self.discriminator = None
 
         if from_email is not None:
@@ -162,6 +174,8 @@ class SignRequestQuickCreate(object):
             self.prepare_url = prepare_url
         if redirect_url is not None:
             self.redirect_url = redirect_url
+        if redirect_url_declined is not None:
+            self.redirect_url_declined = redirect_url_declined
         if required_attachments is not None:
             self.required_attachments = required_attachments
         if disable_attachments is not None:
@@ -176,6 +190,10 @@ class SignRequestQuickCreate(object):
             self.disable_emails = disable_emails
         if disable_upload_signatures is not None:
             self.disable_upload_signatures = disable_upload_signatures
+        if disable_blockchain_proof is not None:
+            self.disable_blockchain_proof = disable_blockchain_proof
+        if text_message_verification_locked is not None:
+            self.text_message_verification_locked = text_message_verification_locked
         if subject is not None:
             self.subject = subject
         if message is not None:
@@ -221,6 +239,8 @@ class SignRequestQuickCreate(object):
             self.file_from_sf = file_from_sf
         if auto_delete_days is not None:
             self.auto_delete_days = auto_delete_days
+        if auto_expire_days is not None:
+            self.auto_expire_days = auto_expire_days
 
     @property
     def from_email(self):
@@ -344,6 +364,31 @@ class SignRequestQuickCreate(object):
             raise ValueError("Invalid value for `redirect_url`, length must be less than or equal to `2100`")  # noqa: E501
 
         self._redirect_url = redirect_url
+
+    @property
+    def redirect_url_declined(self):
+        """Gets the redirect_url_declined of this SignRequestQuickCreate.  # noqa: E501
+
+        URL at which SignRequest will redirect to when a document is declined  # noqa: E501
+
+        :return: The redirect_url_declined of this SignRequestQuickCreate.  # noqa: E501
+        :rtype: str
+        """
+        return self._redirect_url_declined
+
+    @redirect_url_declined.setter
+    def redirect_url_declined(self, redirect_url_declined):
+        """Sets the redirect_url_declined of this SignRequestQuickCreate.
+
+        URL at which SignRequest will redirect to when a document is declined  # noqa: E501
+
+        :param redirect_url_declined: The redirect_url_declined of this SignRequestQuickCreate.  # noqa: E501
+        :type: str
+        """
+        if redirect_url_declined is not None and len(redirect_url_declined) > 2100:
+            raise ValueError("Invalid value for `redirect_url_declined`, length must be less than or equal to `2100`")  # noqa: E501
+
+        self._redirect_url_declined = redirect_url_declined
 
     @property
     def required_attachments(self):
@@ -505,6 +550,52 @@ class SignRequestQuickCreate(object):
         """
 
         self._disable_upload_signatures = disable_upload_signatures
+
+    @property
+    def disable_blockchain_proof(self):
+        """Gets the disable_blockchain_proof of this SignRequestQuickCreate.  # noqa: E501
+
+        Disables storing timestamp proof hashes in blockchain integrations.  # noqa: E501
+
+        :return: The disable_blockchain_proof of this SignRequestQuickCreate.  # noqa: E501
+        :rtype: bool
+        """
+        return self._disable_blockchain_proof
+
+    @disable_blockchain_proof.setter
+    def disable_blockchain_proof(self, disable_blockchain_proof):
+        """Sets the disable_blockchain_proof of this SignRequestQuickCreate.
+
+        Disables storing timestamp proof hashes in blockchain integrations.  # noqa: E501
+
+        :param disable_blockchain_proof: The disable_blockchain_proof of this SignRequestQuickCreate.  # noqa: E501
+        :type: bool
+        """
+
+        self._disable_blockchain_proof = disable_blockchain_proof
+
+    @property
+    def text_message_verification_locked(self):
+        """Gets the text_message_verification_locked of this SignRequestQuickCreate.  # noqa: E501
+
+        When true a text message verification is needed before the signer can see the document  # noqa: E501
+
+        :return: The text_message_verification_locked of this SignRequestQuickCreate.  # noqa: E501
+        :rtype: bool
+        """
+        return self._text_message_verification_locked
+
+    @text_message_verification_locked.setter
+    def text_message_verification_locked(self, text_message_verification_locked):
+        """Sets the text_message_verification_locked of this SignRequestQuickCreate.
+
+        When true a text message verification is needed before the signer can see the document  # noqa: E501
+
+        :param text_message_verification_locked: The text_message_verification_locked of this SignRequestQuickCreate.  # noqa: E501
+        :type: bool
+        """
+
+        self._text_message_verification_locked = text_message_verification_locked
 
     @property
     def subject(self):
@@ -1049,6 +1140,33 @@ class SignRequestQuickCreate(object):
 
         self._auto_delete_days = auto_delete_days
 
+    @property
+    def auto_expire_days(self):
+        """Gets the auto_expire_days of this SignRequestQuickCreate.  # noqa: E501
+
+        Number of days after which a non finished document will be automatically expired  # noqa: E501
+
+        :return: The auto_expire_days of this SignRequestQuickCreate.  # noqa: E501
+        :rtype: int
+        """
+        return self._auto_expire_days
+
+    @auto_expire_days.setter
+    def auto_expire_days(self, auto_expire_days):
+        """Sets the auto_expire_days of this SignRequestQuickCreate.
+
+        Number of days after which a non finished document will be automatically expired  # noqa: E501
+
+        :param auto_expire_days: The auto_expire_days of this SignRequestQuickCreate.  # noqa: E501
+        :type: int
+        """
+        if auto_expire_days is not None and auto_expire_days > 730:  # noqa: E501
+            raise ValueError("Invalid value for `auto_expire_days`, must be a value less than or equal to `730`")  # noqa: E501
+        if auto_expire_days is not None and auto_expire_days < 1:  # noqa: E501
+            raise ValueError("Invalid value for `auto_expire_days`, must be a value greater than or equal to `1`")  # noqa: E501
+
+        self._auto_expire_days = auto_expire_days
+
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -1070,6 +1188,9 @@ class SignRequestQuickCreate(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(SignRequestQuickCreate, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 

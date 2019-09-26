@@ -63,11 +63,14 @@ class Signer(object):
         'message': 'str',
         'embed_url_user_id': 'str',
         'inputs': 'list[SignerInputs]',
+        'use_stamp_for_approve_only': 'bool',
         'embed_url': 'str',
         'attachments': 'list[SignerAttachment]',
         'redirect_url': 'str',
+        'redirect_url_declined': 'str',
         'after_document': 'str',
-        'integrations': 'list[InlineDocumentSignerIntegrationData]'
+        'integrations': 'list[InlineDocumentSignerIntegrationData]',
+        'password': 'str'
     }
 
     attribute_map = {
@@ -99,14 +102,17 @@ class Signer(object):
         'message': 'message',
         'embed_url_user_id': 'embed_url_user_id',
         'inputs': 'inputs',
+        'use_stamp_for_approve_only': 'use_stamp_for_approve_only',
         'embed_url': 'embed_url',
         'attachments': 'attachments',
         'redirect_url': 'redirect_url',
+        'redirect_url_declined': 'redirect_url_declined',
         'after_document': 'after_document',
-        'integrations': 'integrations'
+        'integrations': 'integrations',
+        'password': 'password'
     }
 
-    def __init__(self, email=None, display_name=None, first_name=None, last_name=None, email_viewed=None, viewed=None, signed=None, downloaded=None, signed_on=None, needs_to_sign=True, approve_only=None, notify_only=None, in_person=None, order=None, language=None, force_language=None, emailed=None, verify_phone_number=None, verify_bank_account=None, declined=None, declined_on=None, forwarded=None, forwarded_on=None, forwarded_to_email=None, forwarded_reason=None, message=None, embed_url_user_id=None, inputs=None, embed_url=None, attachments=None, redirect_url=None, after_document=None, integrations=None):  # noqa: E501
+    def __init__(self, email=None, display_name=None, first_name=None, last_name=None, email_viewed=None, viewed=None, signed=None, downloaded=None, signed_on=None, needs_to_sign=True, approve_only=None, notify_only=None, in_person=None, order=None, language=None, force_language=None, emailed=None, verify_phone_number=None, verify_bank_account=None, declined=None, declined_on=None, forwarded=None, forwarded_on=None, forwarded_to_email=None, forwarded_reason=None, message=None, embed_url_user_id=None, inputs=None, use_stamp_for_approve_only=None, embed_url=None, attachments=None, redirect_url=None, redirect_url_declined=None, after_document=None, integrations=None, password=None):  # noqa: E501
         """Signer - a model defined in Swagger"""  # noqa: E501
 
         self._email = None
@@ -137,11 +143,14 @@ class Signer(object):
         self._message = None
         self._embed_url_user_id = None
         self._inputs = None
+        self._use_stamp_for_approve_only = None
         self._embed_url = None
         self._attachments = None
         self._redirect_url = None
+        self._redirect_url_declined = None
         self._after_document = None
         self._integrations = None
+        self._password = None
         self.discriminator = None
 
         self.email = email
@@ -199,16 +208,22 @@ class Signer(object):
             self.embed_url_user_id = embed_url_user_id
         if inputs is not None:
             self.inputs = inputs
+        if use_stamp_for_approve_only is not None:
+            self.use_stamp_for_approve_only = use_stamp_for_approve_only
         if embed_url is not None:
             self.embed_url = embed_url
         if attachments is not None:
             self.attachments = attachments
         if redirect_url is not None:
             self.redirect_url = redirect_url
+        if redirect_url_declined is not None:
+            self.redirect_url_declined = redirect_url_declined
         if after_document is not None:
             self.after_document = after_document
         if integrations is not None:
             self.integrations = integrations
+        if password is not None:
+            self.password = password
 
     @property
     def email(self):
@@ -833,6 +848,29 @@ class Signer(object):
         self._inputs = inputs
 
     @property
+    def use_stamp_for_approve_only(self):
+        """Gets the use_stamp_for_approve_only of this Signer.  # noqa: E501
+
+        Place an approval stamp on a document when a signer approves a document  # noqa: E501
+
+        :return: The use_stamp_for_approve_only of this Signer.  # noqa: E501
+        :rtype: bool
+        """
+        return self._use_stamp_for_approve_only
+
+    @use_stamp_for_approve_only.setter
+    def use_stamp_for_approve_only(self, use_stamp_for_approve_only):
+        """Sets the use_stamp_for_approve_only of this Signer.
+
+        Place an approval stamp on a document when a signer approves a document  # noqa: E501
+
+        :param use_stamp_for_approve_only: The use_stamp_for_approve_only of this Signer.  # noqa: E501
+        :type: bool
+        """
+
+        self._use_stamp_for_approve_only = use_stamp_for_approve_only
+
+    @property
     def embed_url(self):
         """Gets the embed_url of this Signer.  # noqa: E501
 
@@ -900,6 +938,29 @@ class Signer(object):
         self._redirect_url = redirect_url
 
     @property
+    def redirect_url_declined(self):
+        """Gets the redirect_url_declined of this Signer.  # noqa: E501
+
+
+        :return: The redirect_url_declined of this Signer.  # noqa: E501
+        :rtype: str
+        """
+        return self._redirect_url_declined
+
+    @redirect_url_declined.setter
+    def redirect_url_declined(self, redirect_url_declined):
+        """Sets the redirect_url_declined of this Signer.
+
+
+        :param redirect_url_declined: The redirect_url_declined of this Signer.  # noqa: E501
+        :type: str
+        """
+        if redirect_url_declined is not None and len(redirect_url_declined) > 2100:
+            raise ValueError("Invalid value for `redirect_url_declined`, length must be less than or equal to `2100`")  # noqa: E501
+
+        self._redirect_url_declined = redirect_url_declined
+
+    @property
     def after_document(self):
         """Gets the after_document of this Signer.  # noqa: E501
 
@@ -941,6 +1002,31 @@ class Signer(object):
 
         self._integrations = integrations
 
+    @property
+    def password(self):
+        """Gets the password of this Signer.  # noqa: E501
+
+        Require the signer to enter this password before signing a document. This field is write only.  # noqa: E501
+
+        :return: The password of this Signer.  # noqa: E501
+        :rtype: str
+        """
+        return self._password
+
+    @password.setter
+    def password(self, password):
+        """Sets the password of this Signer.
+
+        Require the signer to enter this password before signing a document. This field is write only.  # noqa: E501
+
+        :param password: The password of this Signer.  # noqa: E501
+        :type: str
+        """
+        if password is not None and len(password) < 1:
+            raise ValueError("Invalid value for `password`, length must be greater than or equal to `1`")  # noqa: E501
+
+        self._password = password
+
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -962,6 +1048,9 @@ class Signer(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(Signer, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 

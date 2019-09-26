@@ -31,14 +31,14 @@ class DocumentSearch(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'status': 'str',
-        'name': 'str',
-        'who': 'str',
-        'nr_extra_docs': 'int',
-        'from_email': 'str',
         'uuid': 'str',
         'created': 'datetime',
+        'status': 'str',
+        'who': 'str',
+        'name': 'str',
         'autocomplete': 'str',
+        'from_email': 'str',
+        'nr_extra_docs': 'int',
         'signer_emails': 'list[str]',
         'status_display': 'str',
         'created_timestamp': 'int',
@@ -49,14 +49,14 @@ class DocumentSearch(object):
     }
 
     attribute_map = {
-        'status': 'status',
-        'name': 'name',
-        'who': 'who',
-        'nr_extra_docs': 'nr_extra_docs',
-        'from_email': 'from_email',
         'uuid': 'uuid',
         'created': 'created',
+        'status': 'status',
+        'who': 'who',
+        'name': 'name',
         'autocomplete': 'autocomplete',
+        'from_email': 'from_email',
+        'nr_extra_docs': 'nr_extra_docs',
         'signer_emails': 'signer_emails',
         'status_display': 'status_display',
         'created_timestamp': 'created_timestamp',
@@ -66,17 +66,17 @@ class DocumentSearch(object):
         'subdomain': 'subdomain'
     }
 
-    def __init__(self, status=None, name=None, who=None, nr_extra_docs=None, from_email=None, uuid=None, created=None, autocomplete=None, signer_emails=None, status_display=None, created_timestamp=None, finished_on_timestamp=None, parent_doc=None, finished_on=None, subdomain=None):  # noqa: E501
+    def __init__(self, uuid=None, created=None, status=None, who=None, name=None, autocomplete=None, from_email=None, nr_extra_docs=None, signer_emails=None, status_display=None, created_timestamp=None, finished_on_timestamp=None, parent_doc=None, finished_on=None, subdomain=None):  # noqa: E501
         """DocumentSearch - a model defined in Swagger"""  # noqa: E501
 
-        self._status = None
-        self._name = None
-        self._who = None
-        self._nr_extra_docs = None
-        self._from_email = None
         self._uuid = None
         self._created = None
+        self._status = None
+        self._who = None
+        self._name = None
         self._autocomplete = None
+        self._from_email = None
+        self._nr_extra_docs = None
         self._signer_emails = None
         self._status_display = None
         self._created_timestamp = None
@@ -86,18 +86,18 @@ class DocumentSearch(object):
         self._subdomain = None
         self.discriminator = None
 
-        if status is not None:
-            self.status = status
-        if name is not None:
-            self.name = name
-        self.who = who
-        self.nr_extra_docs = nr_extra_docs
-        self.from_email = from_email
         if uuid is not None:
             self.uuid = uuid
         if created is not None:
             self.created = created
+        if status is not None:
+            self.status = status
+        self.who = who
+        if name is not None:
+            self.name = name
         self.autocomplete = autocomplete
+        self.from_email = from_email
+        self.nr_extra_docs = nr_extra_docs
         if signer_emails is not None:
             self.signer_emails = signer_emails
         if status_display is not None:
@@ -112,131 +112,6 @@ class DocumentSearch(object):
             self.finished_on = finished_on
         if subdomain is not None:
             self.subdomain = subdomain
-
-    @property
-    def status(self):
-        """Gets the status of this DocumentSearch.  # noqa: E501
-
-        `co`: converting, `ne`: new, `se`: sent, `vi`: viewed, `si`: signed, `do`: downloaded, `sd`: signed and downloaded, `ca`: cancelled, `de`: declined, `ec`: error converting, `es`: error sending, `xp`: expired  # noqa: E501
-
-        :return: The status of this DocumentSearch.  # noqa: E501
-        :rtype: str
-        """
-        return self._status
-
-    @status.setter
-    def status(self, status):
-        """Sets the status of this DocumentSearch.
-
-        `co`: converting, `ne`: new, `se`: sent, `vi`: viewed, `si`: signed, `do`: downloaded, `sd`: signed and downloaded, `ca`: cancelled, `de`: declined, `ec`: error converting, `es`: error sending, `xp`: expired  # noqa: E501
-
-        :param status: The status of this DocumentSearch.  # noqa: E501
-        :type: str
-        """
-        if status is not None and len(status) > 2:
-            raise ValueError("Invalid value for `status`, length must be less than or equal to `2`")  # noqa: E501
-        if status is not None and len(status) < 1:
-            raise ValueError("Invalid value for `status`, length must be greater than or equal to `1`")  # noqa: E501
-
-        self._status = status
-
-    @property
-    def name(self):
-        """Gets the name of this DocumentSearch.  # noqa: E501
-
-        Defaults to filename  # noqa: E501
-
-        :return: The name of this DocumentSearch.  # noqa: E501
-        :rtype: str
-        """
-        return self._name
-
-    @name.setter
-    def name(self, name):
-        """Sets the name of this DocumentSearch.
-
-        Defaults to filename  # noqa: E501
-
-        :param name: The name of this DocumentSearch.  # noqa: E501
-        :type: str
-        """
-        if name is not None and len(name) < 1:
-            raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
-
-        self._name = name
-
-    @property
-    def who(self):
-        """Gets the who of this DocumentSearch.  # noqa: E501
-
-
-        :return: The who of this DocumentSearch.  # noqa: E501
-        :rtype: str
-        """
-        return self._who
-
-    @who.setter
-    def who(self, who):
-        """Sets the who of this DocumentSearch.
-
-
-        :param who: The who of this DocumentSearch.  # noqa: E501
-        :type: str
-        """
-        if who is None:
-            raise ValueError("Invalid value for `who`, must not be `None`")  # noqa: E501
-        if who is not None and len(who) < 1:
-            raise ValueError("Invalid value for `who`, length must be greater than or equal to `1`")  # noqa: E501
-
-        self._who = who
-
-    @property
-    def nr_extra_docs(self):
-        """Gets the nr_extra_docs of this DocumentSearch.  # noqa: E501
-
-
-        :return: The nr_extra_docs of this DocumentSearch.  # noqa: E501
-        :rtype: int
-        """
-        return self._nr_extra_docs
-
-    @nr_extra_docs.setter
-    def nr_extra_docs(self, nr_extra_docs):
-        """Sets the nr_extra_docs of this DocumentSearch.
-
-
-        :param nr_extra_docs: The nr_extra_docs of this DocumentSearch.  # noqa: E501
-        :type: int
-        """
-        if nr_extra_docs is None:
-            raise ValueError("Invalid value for `nr_extra_docs`, must not be `None`")  # noqa: E501
-
-        self._nr_extra_docs = nr_extra_docs
-
-    @property
-    def from_email(self):
-        """Gets the from_email of this DocumentSearch.  # noqa: E501
-
-
-        :return: The from_email of this DocumentSearch.  # noqa: E501
-        :rtype: str
-        """
-        return self._from_email
-
-    @from_email.setter
-    def from_email(self, from_email):
-        """Sets the from_email of this DocumentSearch.
-
-
-        :param from_email: The from_email of this DocumentSearch.  # noqa: E501
-        :type: str
-        """
-        if from_email is None:
-            raise ValueError("Invalid value for `from_email`, must not be `None`")  # noqa: E501
-        if from_email is not None and len(from_email) < 1:
-            raise ValueError("Invalid value for `from_email`, length must be greater than or equal to `1`")  # noqa: E501
-
-        self._from_email = from_email
 
     @property
     def uuid(self):
@@ -283,6 +158,83 @@ class DocumentSearch(object):
         self._created = created
 
     @property
+    def status(self):
+        """Gets the status of this DocumentSearch.  # noqa: E501
+
+        `co`: converting, `ne`: new, `se`: sent, `vi`: viewed, `si`: signed, `do`: downloaded, `sd`: signed and downloaded, `ca`: cancelled, `de`: declined, `ec`: error converting, `es`: error sending, `xp`: expired  # noqa: E501
+
+        :return: The status of this DocumentSearch.  # noqa: E501
+        :rtype: str
+        """
+        return self._status
+
+    @status.setter
+    def status(self, status):
+        """Sets the status of this DocumentSearch.
+
+        `co`: converting, `ne`: new, `se`: sent, `vi`: viewed, `si`: signed, `do`: downloaded, `sd`: signed and downloaded, `ca`: cancelled, `de`: declined, `ec`: error converting, `es`: error sending, `xp`: expired  # noqa: E501
+
+        :param status: The status of this DocumentSearch.  # noqa: E501
+        :type: str
+        """
+        if status is not None and len(status) > 2:
+            raise ValueError("Invalid value for `status`, length must be less than or equal to `2`")  # noqa: E501
+        if status is not None and len(status) < 1:
+            raise ValueError("Invalid value for `status`, length must be greater than or equal to `1`")  # noqa: E501
+
+        self._status = status
+
+    @property
+    def who(self):
+        """Gets the who of this DocumentSearch.  # noqa: E501
+
+
+        :return: The who of this DocumentSearch.  # noqa: E501
+        :rtype: str
+        """
+        return self._who
+
+    @who.setter
+    def who(self, who):
+        """Sets the who of this DocumentSearch.
+
+
+        :param who: The who of this DocumentSearch.  # noqa: E501
+        :type: str
+        """
+        if who is None:
+            raise ValueError("Invalid value for `who`, must not be `None`")  # noqa: E501
+        if who is not None and len(who) < 1:
+            raise ValueError("Invalid value for `who`, length must be greater than or equal to `1`")  # noqa: E501
+
+        self._who = who
+
+    @property
+    def name(self):
+        """Gets the name of this DocumentSearch.  # noqa: E501
+
+        Defaults to filename  # noqa: E501
+
+        :return: The name of this DocumentSearch.  # noqa: E501
+        :rtype: str
+        """
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        """Sets the name of this DocumentSearch.
+
+        Defaults to filename  # noqa: E501
+
+        :param name: The name of this DocumentSearch.  # noqa: E501
+        :type: str
+        """
+        if name is not None and len(name) < 1:
+            raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
+
+        self._name = name
+
+    @property
     def autocomplete(self):
         """Gets the autocomplete of this DocumentSearch.  # noqa: E501
 
@@ -306,6 +258,54 @@ class DocumentSearch(object):
             raise ValueError("Invalid value for `autocomplete`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._autocomplete = autocomplete
+
+    @property
+    def from_email(self):
+        """Gets the from_email of this DocumentSearch.  # noqa: E501
+
+
+        :return: The from_email of this DocumentSearch.  # noqa: E501
+        :rtype: str
+        """
+        return self._from_email
+
+    @from_email.setter
+    def from_email(self, from_email):
+        """Sets the from_email of this DocumentSearch.
+
+
+        :param from_email: The from_email of this DocumentSearch.  # noqa: E501
+        :type: str
+        """
+        if from_email is None:
+            raise ValueError("Invalid value for `from_email`, must not be `None`")  # noqa: E501
+        if from_email is not None and len(from_email) < 1:
+            raise ValueError("Invalid value for `from_email`, length must be greater than or equal to `1`")  # noqa: E501
+
+        self._from_email = from_email
+
+    @property
+    def nr_extra_docs(self):
+        """Gets the nr_extra_docs of this DocumentSearch.  # noqa: E501
+
+
+        :return: The nr_extra_docs of this DocumentSearch.  # noqa: E501
+        :rtype: int
+        """
+        return self._nr_extra_docs
+
+    @nr_extra_docs.setter
+    def nr_extra_docs(self, nr_extra_docs):
+        """Sets the nr_extra_docs of this DocumentSearch.
+
+
+        :param nr_extra_docs: The nr_extra_docs of this DocumentSearch.  # noqa: E501
+        :type: int
+        """
+        if nr_extra_docs is None:
+            raise ValueError("Invalid value for `nr_extra_docs`, must not be `None`")  # noqa: E501
+
+        self._nr_extra_docs = nr_extra_docs
 
     @property
     def signer_emails(self):
@@ -481,6 +481,9 @@ class DocumentSearch(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(DocumentSearch, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 

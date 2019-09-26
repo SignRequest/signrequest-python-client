@@ -132,6 +132,105 @@ class TeamsApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
+    def teams_delete(self, subdomain, **kwargs):  # noqa: E501
+        """Delete a Team  # noqa: E501
+
+        Required fields are **name** and **subdomain** where the subdomain is globally unique. Use **POST** to create a Team. To update a field on a Team use **PATCH**.  To use the API on behalf of a particular team change the endpoint to: *https://**{{ subdomain }}**.signrequest.com/api/v1/...*  To invite new team members you can use **POST** {\"email\":\"**email-of-member-to-invite@example.com**\",\"is_admin\":false,\"is_owner\":false} to: *https://signrequest.com/api/v1/teams/**{{ subdomain }}**/invite_member/*  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.teams_delete(subdomain, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str subdomain: (required)
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.teams_delete_with_http_info(subdomain, **kwargs)  # noqa: E501
+        else:
+            (data) = self.teams_delete_with_http_info(subdomain, **kwargs)  # noqa: E501
+            return data
+
+    def teams_delete_with_http_info(self, subdomain, **kwargs):  # noqa: E501
+        """Delete a Team  # noqa: E501
+
+        Required fields are **name** and **subdomain** where the subdomain is globally unique. Use **POST** to create a Team. To update a field on a Team use **PATCH**.  To use the API on behalf of a particular team change the endpoint to: *https://**{{ subdomain }}**.signrequest.com/api/v1/...*  To invite new team members you can use **POST** {\"email\":\"**email-of-member-to-invite@example.com**\",\"is_admin\":false,\"is_owner\":false} to: *https://signrequest.com/api/v1/teams/**{{ subdomain }}**/invite_member/*  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.teams_delete_with_http_info(subdomain, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str subdomain: (required)
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['subdomain']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method teams_delete" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'subdomain' is set
+        if ('subdomain' not in params or
+                params['subdomain'] is None):
+            raise ValueError("Missing the required parameter `subdomain` when calling `teams_delete`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'subdomain' in params:
+            path_params['subdomain'] = params['subdomain']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['Token']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/teams/{subdomain}/', 'DELETE',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type=None,  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def teams_invite_member(self, subdomain, data, **kwargs):  # noqa: E501
         """Invite a Team Member  # noqa: E501
 

@@ -17,6 +17,7 @@ import re  # noqa: F401
 import six
 
 from signrequest_client.models.document import Document  # noqa: F401,E501
+from signrequest_client.models.document_team import DocumentTeam  # noqa: F401,E501
 from signrequest_client.models.signer import Signer  # noqa: F401,E501
 
 
@@ -41,6 +42,7 @@ class Event(object):
         'delivered_on': 'datetime',
         'callback_status_code': 'int',
         'timestamp': 'datetime',
+        'team': 'DocumentTeam',
         'document': 'Document',
         'signer': 'Signer'
     }
@@ -53,11 +55,12 @@ class Event(object):
         'delivered_on': 'delivered_on',
         'callback_status_code': 'callback_status_code',
         'timestamp': 'timestamp',
+        'team': 'team',
         'document': 'document',
         'signer': 'signer'
     }
 
-    def __init__(self, uuid=None, status=None, event_type=None, delivered=None, delivered_on=None, callback_status_code=None, timestamp=None, document=None, signer=None):  # noqa: E501
+    def __init__(self, uuid=None, status=None, event_type=None, delivered=None, delivered_on=None, callback_status_code=None, timestamp=None, team=None, document=None, signer=None):  # noqa: E501
         """Event - a model defined in Swagger"""  # noqa: E501
 
         self._uuid = None
@@ -67,6 +70,7 @@ class Event(object):
         self._delivered_on = None
         self._callback_status_code = None
         self._timestamp = None
+        self._team = None
         self._document = None
         self._signer = None
         self.discriminator = None
@@ -85,6 +89,8 @@ class Event(object):
             self.callback_status_code = callback_status_code
         if timestamp is not None:
             self.timestamp = timestamp
+        if team is not None:
+            self.team = team
         if document is not None:
             self.document = document
         if signer is not None:
@@ -252,6 +258,27 @@ class Event(object):
         self._timestamp = timestamp
 
     @property
+    def team(self):
+        """Gets the team of this Event.  # noqa: E501
+
+
+        :return: The team of this Event.  # noqa: E501
+        :rtype: DocumentTeam
+        """
+        return self._team
+
+    @team.setter
+    def team(self, team):
+        """Sets the team of this Event.
+
+
+        :param team: The team of this Event.  # noqa: E501
+        :type: DocumentTeam
+        """
+
+        self._team = team
+
+    @property
     def document(self):
         """Gets the document of this Event.  # noqa: E501
 
@@ -314,6 +341,9 @@ class Event(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(Event, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 

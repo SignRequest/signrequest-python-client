@@ -17,6 +17,7 @@ import re  # noqa: F401
 import six
 
 from signrequest_client.models.document_signer_template_conf import DocumentSignerTemplateConf  # noqa: F401,E501
+from signrequest_client.models.document_team import DocumentTeam  # noqa: F401,E501
 from signrequest_client.models.user import User  # noqa: F401,E501
 
 
@@ -38,6 +39,7 @@ class Template(object):
         'name': 'str',
         'uuid': 'str',
         'user': 'User',
+        'team': 'DocumentTeam',
         'who': 'str',
         'signers': 'list[DocumentSignerTemplateConf]'
     }
@@ -47,17 +49,19 @@ class Template(object):
         'name': 'name',
         'uuid': 'uuid',
         'user': 'user',
+        'team': 'team',
         'who': 'who',
         'signers': 'signers'
     }
 
-    def __init__(self, url=None, name=None, uuid=None, user=None, who=None, signers=None):  # noqa: E501
+    def __init__(self, url=None, name=None, uuid=None, user=None, team=None, who=None, signers=None):  # noqa: E501
         """Template - a model defined in Swagger"""  # noqa: E501
 
         self._url = None
         self._name = None
         self._uuid = None
         self._user = None
+        self._team = None
         self._who = None
         self._signers = None
         self.discriminator = None
@@ -70,6 +74,8 @@ class Template(object):
             self.uuid = uuid
         if user is not None:
             self.user = user
+        if team is not None:
+            self.team = team
         if who is not None:
             self.who = who
         if signers is not None:
@@ -166,6 +172,27 @@ class Template(object):
         self._user = user
 
     @property
+    def team(self):
+        """Gets the team of this Template.  # noqa: E501
+
+
+        :return: The team of this Template.  # noqa: E501
+        :rtype: DocumentTeam
+        """
+        return self._team
+
+    @team.setter
+    def team(self, team):
+        """Sets the team of this Template.
+
+
+        :param team: The team of this Template.  # noqa: E501
+        :type: DocumentTeam
+        """
+
+        self._team = team
+
+    @property
     def who(self):
         """Gets the who of this Template.  # noqa: E501
 
@@ -236,6 +263,9 @@ class Template(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(Template, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 

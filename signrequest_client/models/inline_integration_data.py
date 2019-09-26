@@ -121,6 +121,9 @@ class InlineIntegrationData(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(InlineIntegrationData, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 
