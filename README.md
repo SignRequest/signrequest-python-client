@@ -50,9 +50,11 @@ from signrequest_client.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: Token
-signrequest_client.configuration = signrequest_client.Configuration()
-signrequest_client.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
-signrequest_client.configuration.api_key_prefix['Authorization'] = 'Token'
+default_configuration = signrequest_client.Configuration()
+default_configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+default_configuration.api_key_prefix['Authorization'] = 'Token'
+signrequest_client.Configuration.set_default(default_configuration)
+
 # create an instance of the API class
 api_instance = signrequest_client.DocumentsApi()
 data = signrequest_client.Document(
@@ -75,10 +77,7 @@ All URIs are relative to *https://signrequest.com/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ApiTokensApi* | [**api_tokens_create**](docs/ApiTokensApi.md#api_tokens_create) | **POST** /api-tokens/ | Create an API token
-*ApiTokensApi* | [**api_tokens_delete**](docs/ApiTokensApi.md#api_tokens_delete) | **DELETE** /api-tokens/{key}/ | Delete an API token
 *ApiTokensApi* | [**api_tokens_list**](docs/ApiTokensApi.md#api_tokens_list) | **GET** /api-tokens/ | Retrieve a list of API tokens
-*ApiTokensApi* | [**api_tokens_read**](docs/ApiTokensApi.md#api_tokens_read) | **GET** /api-tokens/{key}/ | Retrieve an API token
 *DocumentAttachmentsApi* | [**document_attachments_create**](docs/DocumentAttachmentsApi.md#document_attachments_create) | **POST** /document-attachments/ | Create a Document Attachment
 *DocumentAttachmentsApi* | [**document_attachments_list**](docs/DocumentAttachmentsApi.md#document_attachments_list) | **GET** /document-attachments/ | Retrieve a list of Document Attachments
 *DocumentAttachmentsApi* | [**document_attachments_read**](docs/DocumentAttachmentsApi.md#document_attachments_read) | **GET** /document-attachments/{uuid}/ | Retrieve a Document Attachment
@@ -98,6 +97,7 @@ Class | Method | HTTP request | Description
 *TeamMembersApi* | [**team_members_list**](docs/TeamMembersApi.md#team_members_list) | **GET** /team-members/ | Retrieve a list of Team Members
 *TeamMembersApi* | [**team_members_read**](docs/TeamMembersApi.md#team_members_read) | **GET** /team-members/{uuid}/ | Retrieve a Team Member
 *TeamsApi* | [**teams_create**](docs/TeamsApi.md#teams_create) | **POST** /teams/ | Create a Team
+*TeamsApi* | [**teams_delete**](docs/TeamsApi.md#teams_delete) | **DELETE** /teams/{subdomain}/ | Delete a Team
 *TeamsApi* | [**teams_invite_member**](docs/TeamsApi.md#teams_invite_member) | **POST** /teams/{subdomain}/invite_member/ | Invite a Team Member
 *TeamsApi* | [**teams_list**](docs/TeamsApi.md#teams_list) | **GET** /teams/ | Retrieve a list of Teams
 *TeamsApi* | [**teams_partial_update**](docs/TeamsApi.md#teams_partial_update) | **PATCH** /teams/{subdomain}/ | Update a Team
@@ -119,6 +119,9 @@ Class | Method | HTTP request | Description
  - [DocumentAttachment](docs/DocumentAttachment.md)
  - [DocumentSearch](docs/DocumentSearch.md)
  - [DocumentSignerTemplateConf](docs/DocumentSignerTemplateConf.md)
+ - [DocumentSigningLog](docs/DocumentSigningLog.md)
+ - [DocumentSignrequest](docs/DocumentSignrequest.md)
+ - [DocumentTeam](docs/DocumentTeam.md)
  - [Event](docs/Event.md)
  - [FileFromSf](docs/FileFromSf.md)
  - [InlineDocumentSignerIntegrationData](docs/InlineDocumentSignerIntegrationData.md)

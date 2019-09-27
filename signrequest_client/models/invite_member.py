@@ -144,6 +144,9 @@ class InviteMember(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(InviteMember, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 

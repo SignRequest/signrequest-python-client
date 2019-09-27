@@ -129,7 +129,7 @@ class DocumentAttachment(object):
     def name(self):
         """Gets the name of this DocumentAttachment.  # noqa: E501
 
-        Defaults to filename  # noqa: E501
+        Defaults to filename, including extension  # noqa: E501
 
         :return: The name of this DocumentAttachment.  # noqa: E501
         :rtype: str
@@ -140,13 +140,13 @@ class DocumentAttachment(object):
     def name(self, name):
         """Sets the name of this DocumentAttachment.
 
-        Defaults to filename  # noqa: E501
+        Defaults to filename, including extension  # noqa: E501
 
         :param name: The name of this DocumentAttachment.  # noqa: E501
         :type: str
         """
-        if name is not None and len(name) < 1:
-            raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
+        if name is not None and len(name) > 255:
+            raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
 
         self._name = name
 
@@ -288,6 +288,9 @@ class DocumentAttachment(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(DocumentAttachment, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 

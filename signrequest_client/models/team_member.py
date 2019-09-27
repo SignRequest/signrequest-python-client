@@ -16,6 +16,7 @@ import re  # noqa: F401
 
 import six
 
+from signrequest_client.models.document_team import DocumentTeam  # noqa: F401,E501
 from signrequest_client.models.user import User  # noqa: F401,E501
 
 
@@ -36,6 +37,7 @@ class TeamMember(object):
         'uuid': 'str',
         'url': 'str',
         'user': 'User',
+        'team': 'DocumentTeam',
         'is_admin': 'bool',
         'is_active': 'bool',
         'is_owner': 'bool'
@@ -45,17 +47,19 @@ class TeamMember(object):
         'uuid': 'uuid',
         'url': 'url',
         'user': 'user',
+        'team': 'team',
         'is_admin': 'is_admin',
         'is_active': 'is_active',
         'is_owner': 'is_owner'
     }
 
-    def __init__(self, uuid=None, url=None, user=None, is_admin=None, is_active=None, is_owner=None):  # noqa: E501
+    def __init__(self, uuid=None, url=None, user=None, team=None, is_admin=None, is_active=None, is_owner=None):  # noqa: E501
         """TeamMember - a model defined in Swagger"""  # noqa: E501
 
         self._uuid = None
         self._url = None
         self._user = None
+        self._team = None
         self._is_admin = None
         self._is_active = None
         self._is_owner = None
@@ -67,6 +71,8 @@ class TeamMember(object):
             self.url = url
         if user is not None:
             self.user = user
+        if team is not None:
+            self.team = team
         if is_admin is not None:
             self.is_admin = is_admin
         if is_active is not None:
@@ -138,6 +144,27 @@ class TeamMember(object):
         """
 
         self._user = user
+
+    @property
+    def team(self):
+        """Gets the team of this TeamMember.  # noqa: E501
+
+
+        :return: The team of this TeamMember.  # noqa: E501
+        :rtype: DocumentTeam
+        """
+        return self._team
+
+    @team.setter
+    def team(self, team):
+        """Sets the team of this TeamMember.
+
+
+        :param team: The team of this TeamMember.  # noqa: E501
+        :type: DocumentTeam
+        """
+
+        self._team = team
 
     @property
     def is_admin(self):
@@ -223,6 +250,9 @@ class TeamMember(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(TeamMember, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 

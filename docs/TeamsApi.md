@@ -5,6 +5,7 @@ All URIs are relative to *https://signrequest.com/api/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**teams_create**](TeamsApi.md#teams_create) | **POST** /teams/ | Create a Team
+[**teams_delete**](TeamsApi.md#teams_delete) | **DELETE** /teams/{subdomain}/ | Delete a Team
 [**teams_invite_member**](TeamsApi.md#teams_invite_member) | **POST** /teams/{subdomain}/invite_member/ | Invite a Team Member
 [**teams_list**](TeamsApi.md#teams_list) | **GET** /teams/ | Retrieve a list of Teams
 [**teams_partial_update**](TeamsApi.md#teams_partial_update) | **PATCH** /teams/{subdomain}/ | Update a Team
@@ -52,6 +53,58 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Team**](Team.md)
+
+### Authorization
+
+[Token](../README.md#Token)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **teams_delete**
+> teams_delete(subdomain)
+
+Delete a Team
+
+Required fields are **name** and **subdomain** where the subdomain is globally unique. Use **POST** to create a Team. To update a field on a Team use **PATCH**.  To use the API on behalf of a particular team change the endpoint to: *https://**{{ subdomain }}**.signrequest.com/api/v1/...*  To invite new team members you can use **POST** {\"email\":\"**email-of-member-to-invite@example.com**\",\"is_admin\":false,\"is_owner\":false} to: *https://signrequest.com/api/v1/teams/**{{ subdomain }}**/invite_member/*
+
+### Example
+```python
+from __future__ import print_function
+import time
+import signrequest_client
+from signrequest_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: Token
+configuration = signrequest_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+configuration.api_key_prefix['Authorization'] = 'Token'
+
+# create an instance of the API class
+api_instance = signrequest_client.TeamsApi(signrequest_client.ApiClient(configuration))
+subdomain = 'subdomain_example' # str | 
+
+try:
+    # Delete a Team
+    api_instance.teams_delete(subdomain)
+except ApiException as e:
+    print("Exception when calling TeamsApi->teams_delete: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **subdomain** | **str**|  | 
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 

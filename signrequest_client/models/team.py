@@ -40,7 +40,9 @@ class Team(object):
         'phone': 'str',
         'primary_color': 'str',
         'events_callback_url': 'str',
-        'members': 'list[InlineTeamMember]'
+        'members': 'list[InlineTeamMember]',
+        'delete_after': 'datetime',
+        'sandbox': 'bool'
     }
 
     attribute_map = {
@@ -51,10 +53,12 @@ class Team(object):
         'phone': 'phone',
         'primary_color': 'primary_color',
         'events_callback_url': 'events_callback_url',
-        'members': 'members'
+        'members': 'members',
+        'delete_after': 'delete_after',
+        'sandbox': 'sandbox'
     }
 
-    def __init__(self, name=None, subdomain=None, url=None, logo=None, phone=None, primary_color=None, events_callback_url=None, members=None):  # noqa: E501
+    def __init__(self, name=None, subdomain=None, url=None, logo=None, phone=None, primary_color=None, events_callback_url=None, members=None, delete_after=None, sandbox=None):  # noqa: E501
         """Team - a model defined in Swagger"""  # noqa: E501
 
         self._name = None
@@ -65,6 +69,8 @@ class Team(object):
         self._primary_color = None
         self._events_callback_url = None
         self._members = None
+        self._delete_after = None
+        self._sandbox = None
         self.discriminator = None
 
         self.name = name
@@ -81,6 +87,10 @@ class Team(object):
             self.events_callback_url = events_callback_url
         if members is not None:
             self.members = members
+        if delete_after is not None:
+            self.delete_after = delete_after
+        if sandbox is not None:
+            self.sandbox = sandbox
 
     @property
     def name(self):
@@ -221,6 +231,8 @@ class Team(object):
         """
         if primary_color is not None and len(primary_color) > 100:
             raise ValueError("Invalid value for `primary_color`, length must be less than or equal to `100`")  # noqa: E501
+        if primary_color is not None and not re.search(r'^[#a-zA-Z0-9]+$', primary_color):  # noqa: E501
+            raise ValueError(r"Invalid value for `primary_color`, must be a follow pattern or equal to `/^[#a-zA-Z0-9]+$/`")  # noqa: E501
 
         self._primary_color = primary_color
 
@@ -268,6 +280,52 @@ class Team(object):
 
         self._members = members
 
+    @property
+    def delete_after(self):
+        """Gets the delete_after of this Team.  # noqa: E501
+
+        When filled this team will be deleted after this date  # noqa: E501
+
+        :return: The delete_after of this Team.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._delete_after
+
+    @delete_after.setter
+    def delete_after(self, delete_after):
+        """Sets the delete_after of this Team.
+
+        When filled this team will be deleted after this date  # noqa: E501
+
+        :param delete_after: The delete_after of this Team.  # noqa: E501
+        :type: datetime
+        """
+
+        self._delete_after = delete_after
+
+    @property
+    def sandbox(self):
+        """Gets the sandbox of this Team.  # noqa: E501
+
+        Indicates whether team is in Sandbox mode  # noqa: E501
+
+        :return: The sandbox of this Team.  # noqa: E501
+        :rtype: bool
+        """
+        return self._sandbox
+
+    @sandbox.setter
+    def sandbox(self, sandbox):
+        """Sets the sandbox of this Team.
+
+        Indicates whether team is in Sandbox mode  # noqa: E501
+
+        :param sandbox: The sandbox of this Team.  # noqa: E501
+        :type: bool
+        """
+
+        self._sandbox = sandbox
+
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -289,6 +347,9 @@ class Team(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(Team, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 

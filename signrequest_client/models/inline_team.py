@@ -100,8 +100,8 @@ class InlineTeam(object):
         """
         if subdomain is not None and len(subdomain) < 1:
             raise ValueError("Invalid value for `subdomain`, length must be greater than or equal to `1`")  # noqa: E501
-        if subdomain is not None and not re.search('^[-a-zA-Z0-9_]+$', subdomain):  # noqa: E501
-            raise ValueError("Invalid value for `subdomain`, must be a follow pattern or equal to `/^[-a-zA-Z0-9_]+$/`")  # noqa: E501
+        if subdomain is not None and not re.search(r'^[-a-zA-Z0-9_]+$', subdomain):  # noqa: E501
+            raise ValueError(r"Invalid value for `subdomain`, must be a follow pattern or equal to `/^[-a-zA-Z0-9_]+$/`")  # noqa: E501
 
         self._subdomain = subdomain
 
@@ -147,6 +147,9 @@ class InlineTeam(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(InlineTeam, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 
