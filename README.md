@@ -50,9 +50,11 @@ from signrequest_client.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: Token
-signrequest_client.configuration = signrequest_client.Configuration()
-signrequest_client.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
-signrequest_client.configuration.api_key_prefix['Authorization'] = 'Token'
+default_configuration = signrequest_client.Configuration()
+default_configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+default_configuration.api_key_prefix['Authorization'] = 'Token'
+signrequest_client.Configuration.set_default(default_configuration)
+
 # create an instance of the API class
 api_instance = signrequest_client.DocumentsApi()
 data = signrequest_client.Document(
