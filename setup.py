@@ -15,7 +15,7 @@ from setuptools import setup, find_packages  # noqa: H301
 import os
 
 NAME = "signrequest-python-client"
-VERSION = "2.0.0"
+VERSION = "2.1.0"
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()

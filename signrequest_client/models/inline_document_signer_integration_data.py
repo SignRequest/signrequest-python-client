@@ -32,7 +32,7 @@ class InlineDocumentSignerIntegrationData(object):
     """
     swagger_types = {
         'integration': 'str',
-        'integration_data': 'str'
+        'integration_data': 'object'
     }
 
     attribute_map = {
@@ -70,7 +70,7 @@ class InlineDocumentSignerIntegrationData(object):
         :param integration: The integration of this InlineDocumentSignerIntegrationData.  # noqa: E501
         :type: str
         """
-        allowed_values = ["mfiles", "salesforce", "formdesk", "zapier", "txhash"]  # noqa: E501
+        allowed_values = ["mfiles", "salesforce", "formdesk", "zapier"]  # noqa: E501
         if integration not in allowed_values:
             raise ValueError(
                 "Invalid value for `integration` ({0}), must be one of {1}"  # noqa: E501
@@ -85,7 +85,7 @@ class InlineDocumentSignerIntegrationData(object):
 
 
         :return: The integration_data of this InlineDocumentSignerIntegrationData.  # noqa: E501
-        :rtype: str
+        :rtype: object
         """
         return self._integration_data
 
@@ -95,7 +95,7 @@ class InlineDocumentSignerIntegrationData(object):
 
 
         :param integration_data: The integration_data of this InlineDocumentSignerIntegrationData.  # noqa: E501
-        :type: str
+        :type: object
         """
 
         self._integration_data = integration_data
